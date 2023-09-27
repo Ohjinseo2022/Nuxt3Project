@@ -1,5 +1,5 @@
 FROM node:16-alpine as build-stage
-ARG profile=build_pub_dev
+ARG profile=build
 WORKDIR /app
 COPY package*.json ./
 COPY package-lock*.json ./
