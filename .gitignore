@@ -6,6 +6,7 @@
 .cache
 dist
 .history
+
 # Node dependencies
 node_modules
 
@@ -24,3 +25,4 @@ logs
 !.env.example
 
 
+package-lock.json
