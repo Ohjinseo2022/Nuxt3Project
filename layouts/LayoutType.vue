@@ -1,4 +1,4 @@
 <script setup="ts"></script>
 <template>
-  <div>기본 설정 완료</div>
+  <div></div>
 </template>
