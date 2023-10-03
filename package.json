@@ -3,7 +3,8 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "build": "nuxt build",
+    "build": "nuxt build --dotenv .env.dev --no-optional",
+    "local": "nuxt dev --dotenv .env.local --port=3000",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
