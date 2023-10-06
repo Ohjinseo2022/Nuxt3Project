@@ -60,14 +60,17 @@ export default defineNuxtConfig({
     },
   },
   vite: {
+
   },
+  
+  experimental: { crossOriginPrefetch: true }
   // optimization: {
   //   treeShake: {
 
   //   }
   // }
   // treeShake: { client: { myPackage: ['useServerOnlyComposable'] } }
-  devtools: { enabled: true }
+  // devtools: { enabled: true }
 });
 
 

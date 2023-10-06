@@ -5,16 +5,18 @@
   "scripts": {
     "build": "nuxt build --dotenv .env.dev --no-optional",
     "local": "nuxt dev --dotenv .env.local --port=3000",
-    "localdev": "nuxt dev --dotenv .env.local --port=3000",
+    "localdev": "nuxt dev --dotenv .env.dev --port=3000",
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "clean": "rmdir /s .nuxt dist .output",
+    "type": "npx nuxi typecheck"
   },
   "devDependencies": {
     "@invictus.codes/nuxt-vuetify": "^0.2.18",
+    "@nuxt/image": "^1.0.0-rc.1",
     "@pinia-plugin-persistedstate/nuxt": "^1.1.1",
-    "@nuxt/devtools": "latest",
     "nuxt": "^3.7.4",
     "nuxt-security": "^0.13.0"
   },

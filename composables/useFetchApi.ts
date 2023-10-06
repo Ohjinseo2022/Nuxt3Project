@@ -28,19 +28,22 @@ export default async <T>(apiUrl: string, opts: {
     params: {...opts?.params },  //uuid: `uuid_${Math.round(Math.random()*1000000)}`
     // params: opts?.params,
     body: opts?.body,
-    mode: 'cors',
+    mode: 'no-cors',
     redirect: "follow",
     cache: "no-store",
     onRequest({ request, options }) {
+        console.log(`[useApiReq] : 전송`);
+        console.log(request)
       options.headers = {...options.headers, "Access-Control-Allow-Origin": "*"};
     },
     onRequestError({ request, options, error }) {
-    //   useOption.offLoading();
-      // console.log(`[useApiReq] : req 오류 발생`);
-      // console.log(error);
+      console.log(`[useApiReq] : req 오류 발생`);
+      console.log(error);
     },
     onResponse({ request, response, options }) {
     //   useOption.offLoading();
+    console.log(`[useApiRes] : Res 데이터`);
+    console.log(response)
       if(response.headers.get("X-Total-Count")){
         etcObj.count = Number(response.headers.get("X-Total-Count") || "0")
       }
@@ -68,12 +71,12 @@ export default async <T>(apiUrl: string, opts: {
     },
     onResponseError({ request, response, options }) {
     //   useOption.offLoading();
-      // console.log(`[useApiReq] : res 오류 발생`);
-      // console.log(`[useApiReq] : ${response.status}`);
+      console.log(`[useApiReq] : res 오류 발생`);
+      console.log(`[useApiReq] : ${response.status}`);
     },
   });
 
-
+  console.log( {...fetchData, ...etcObj})
 
   return {...fetchData, ...etcObj}
 }
