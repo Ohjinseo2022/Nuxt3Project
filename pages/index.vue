@@ -18,12 +18,14 @@ const onList = async () => {
   console.log(data.value);
   listData.value = data.value as ListDataType[];
 };
+const inputValue = ref<string>("");
 onMounted(async () => {
   await onList();
 });
 </script>
 <template>
   <div>기본 설정 완료</div>
+  <CommonInput v-model="inputValue" :placeholder="'공통컴포넌트 테스트 '" />
   <div v-if="listData.length > 0" v-for="(item, idx) in listData" :key="idx">
     {{ item.userName }}
     {{ item.id }}
