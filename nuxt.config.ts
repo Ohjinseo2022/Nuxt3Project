@@ -2,9 +2,9 @@
 export default defineNuxtConfig({
   ssr: false,
   pages: true,
-  components:true,
+  components: true,
   imports: {
-    autoImport: true
+    autoImport: true,
   },
   app: {
     buildAssetsDir: "_nuxt",
@@ -16,7 +16,7 @@ export default defineNuxtConfig({
         {
           rel: "icon",
           type: "image/png",
-          href: "/favicon.png"
+          href: "/favicon.png",
         },
       ],
       // script: [
@@ -41,7 +41,7 @@ export default defineNuxtConfig({
   ],
   modules: [
     "@pinia/nuxt",
-    '@pinia-plugin-persistedstate/nuxt',
+    "@pinia-plugin-persistedstate/nuxt",
     "@invictus.codes/nuxt-vuetify",
     // "nuxt-gtag",
     // '@nuxt/image',
@@ -49,7 +49,12 @@ export default defineNuxtConfig({
   nitro: {
     compressPublicAssets: true,
     devProxy: {
-    }
+      "/api": {
+        target: "http://124.63.21.91:9876/api",
+        changeOrigin: true,
+        // prependPath: true,
+      },
+    },
   },
   vuetify: {
     vuetifyOptions: {},
@@ -59,11 +64,9 @@ export default defineNuxtConfig({
       autoImport: true,
     },
   },
-  vite: {
+  vite: {},
 
-  },
-  
-  experimental: { crossOriginPrefetch: true }
+  experimental: { crossOriginPrefetch: true },
   // optimization: {
   //   treeShake: {
 
@@ -72,6 +75,3 @@ export default defineNuxtConfig({
   // treeShake: { client: { myPackage: ['useServerOnlyComposable'] } }
   // devtools: { enabled: true }
 });
-
-
-
