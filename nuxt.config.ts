@@ -64,17 +64,7 @@ export default defineNuxtConfig({
       autoImport: true,
     },
   },
-  vite: {
-    server: {
-      proxy: {
-        "/api": {
-          target: "http://124.63.21.91:9876/api",
-          changeOrigin: true,
-          // prependPath: true,
-        },
-      },
-    },
-  },
+  vite: {},
 
   experimental: { crossOriginPrefetch: true },
   // optimization: {
