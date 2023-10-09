@@ -48,13 +48,18 @@ export default defineNuxtConfig({
   ],
   nitro: {
     compressPublicAssets: true,
-    devProxy: {
-      "/api": {
-        target: "http://124.63.21.91:9876/api",
-        changeOrigin: true,
-        // prependPath: true,
+    routeRules: {
+      "/api/**": {
+          proxy: "http://124.63.21.91:9876/api/**",
       },
-    },
+  },
+    // devProxy: {
+    //   "/api": {
+    //     target: "http://124.63.21.91:9876/api",
+    //     changeOrigin: true,
+    //     // prependPath: true,
+    //   },
+    // },
   },
   vuetify: {
     vuetifyOptions: {},
