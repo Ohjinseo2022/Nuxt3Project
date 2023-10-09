@@ -34,12 +34,12 @@ export default defineNuxtConfig({
     },
   },
   css: [
-    // "@progress/kendo-theme-default/dist/all.css",
+     "@progress/kendo-theme-default/dist/all.css",
     // "~/assets/styles/app.scss",
     // "~/assets/styles/all.css",
     // "~/assets/styles/style.css",
     // "~/assets/styles/admin.css",
-    // "vuetify/lib/styles/main.sass"
+    "vuetify/lib/styles/main.sass"
   ],
   modules: [
     "@pinia/nuxt",

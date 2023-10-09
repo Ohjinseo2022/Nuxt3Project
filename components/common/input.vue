@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Input } from "@progress/kendo-vue-inputs";
+
 interface InputProps {
   modelValue: string;
   placeholder?: string;
