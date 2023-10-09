@@ -1,4 +1,6 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
+const { VITE_DOMAIN } = import.meta.env;
+
 export default defineNuxtConfig({
   ssr: false,
   pages: true,
@@ -50,7 +52,7 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     routeRules: {
       "/api/**": {
-          proxy: "http://124.63.21.91:9876/api/**",
+          proxy: `${VITE_DOMAIN}/api/**`,
       },
   },
     // devProxy: {
