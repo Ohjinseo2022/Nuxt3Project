@@ -13,7 +13,7 @@ RUN npm install --legacy-peer-deps
 # RUN npm install --legacy-peer-deps
 COPY . .
 # RUN npx kendo-ui-license activate
-RUN npm run ${profile}
+RUN npm run profile
 ENV HOST 0.0.0.0
 EXPOSE 3000
 ENTRYPOINT ["node", ".output/server/index.mjs"]
