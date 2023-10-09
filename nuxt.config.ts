@@ -71,7 +71,13 @@ export default defineNuxtConfig({
       autoImport: true,
     },
   },
-  vite: {},
+  vite: {
+    build: {
+      rollupOptions: {
+        external: 'NonExistingPath'
+      }
+    },
+  },
 
   experimental: { crossOriginPrefetch: true },
   // optimization: {
