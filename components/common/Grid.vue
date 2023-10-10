@@ -53,6 +53,7 @@ watch(props, () => {
       <template v-slot:input="{ props }">
         <td>
           <!-- <CommonInput v-model="props.dataItem?.[props.field]" /> -->
+          
           {{ props.dataItem?.[props.field] }}
         </td>
       </template>
