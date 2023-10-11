@@ -1,5 +1,6 @@
 import { Input } from "@progress/kendo-vue-inputs";
-import { Grid,GridNoRecords } from '@progress/kendo-vue-grid'
+import { Grid,GridNoRecords,GridToolbar } from '@progress/kendo-vue-grid'
+import { Button } from '@progress/kendo-vue-buttons';
 import {
   IntlProvider,
   load,
@@ -14,6 +15,8 @@ export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.vueApp.component("Input", Input);
   nuxtApp.vueApp.component("Grid", Grid);
   nuxtApp.vueApp.component("GridNoRecords", GridNoRecords);
+  nuxtApp.vueApp.component("GridToolbar", GridToolbar);
+  nuxtApp.vueApp.component("Button", Button);
   return {
     provide: {
       loadMessages,
