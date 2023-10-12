@@ -8,30 +8,40 @@ interface RowGridProps {
   cancel?: () => {};
 }
 const props = defineProps<RowGridProps>();
+const emit = defineEmits(["edit", "save", "remove", "cancel"]);
+const editHandler = () => {
+  emit("edit", { dataItem: props.dataItem });
+};
+const removeHandler = () => {
+  emit("remove", { dataItem: props.dataItem });
+};
+const addUpdateHandler = () => {
+  emit("save", { dataItem: props.dataItem });
+};
+const cancelDiscardHandler = () => {
+  emit("cancel", { dataItem: props.dataItem });
+};
+
 </script>
 <template>
   <td v-if="!dataItem['inEdit']" class="k-command-cell">
-    <!--  @click="editHandler" -->
     <Button
       :theme-color="'primary'"
       class="k-grid-edit-command"
-     
+      @click="editHandler"
     >
       Edit
     </Button>
-    <!-- @click="removeHandler" -->
-    <Button class="k-grid-remove-command" >
+    <Button class="k-grid-remove-command" @click="removeHandler">
       Remove
     </Button>
   </td>
   <td v-else>
-    <!-- @click="addUpdateHandler" -->
-    <Button class="k-grid-save-command">
+    <Button class="k-grid-save-command" @click="addUpdateHandler">
       {{ dataItem.index ? "Update" : "Add" }}
     </Button>
 
-    <!-- @click="cancelDiscardHandler" -->
-    <Button class="k-grid-cancel-command" >
+    <Button class="k-grid-cancel-command" @click="cancelDiscardHandler">
       {{ dataItem.index ? "Cancel" : "Discard" }}
     </Button>
   </td>

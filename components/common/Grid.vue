@@ -90,6 +90,7 @@ const insert = async () => {
   dataItem.value = newDateItem;
 };
 const edit = (e: any) => {
+  console.log(e)
   e.dataItem.inEdit = true;
 };
 const save = (e: any) => {
@@ -125,6 +126,7 @@ const remove = (e: any) => {
       :columns="columns"
       :selectedField="selected"
       :editField="'inEdit'"
+      @rowclick="edit"
       @itemchange="itemChange"
     >
       <GridNoRecords>
