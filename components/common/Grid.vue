@@ -1,15 +1,4 @@
 <script setup lang="ts">
-export interface dataItem {
-  [key: string]: any;
-  id: string;
-  userName: string;
-  col1: string;
-  col2: string;
-  col3: string;
-  col4: string;
-  col5: string;
-  col6: string;
-}
 
 interface GridProps {
   dataItems: dataItem[];
@@ -90,7 +79,7 @@ const insert = async () => {
   dataItem.value = newDateItem;
 };
 const edit = (e: any) => {
-  console.log(e)
+  console.log(e);
   e.dataItem.inEdit = true;
 };
 const save = (e: any) => {

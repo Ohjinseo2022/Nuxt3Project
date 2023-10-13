@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { dataItem } from '@/components/common/Grid.vue';
-
 
 const columns = [{
   field: 'userName',title:'이름'},

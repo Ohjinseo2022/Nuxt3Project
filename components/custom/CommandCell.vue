@@ -1,7 +1,7 @@
 <script setup lang="ts">
-// import { dataItem } from "@/components/common/Grid.vue";
+
 interface RowGridProps {
-  dataItem: any;
+  dataItem: dataItem;
   edit?: () => {};
   save?: () => {};
   remove?: () => {};
