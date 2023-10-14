@@ -25,24 +25,16 @@ const cancelDiscardHandler = () => {
 </script>
 <template>
   <td v-if="!dataItem['inEdit']" class="k-command-cell">
-    <Button
-      :theme-color="'primary'"
-      class="k-grid-edit-command"
-      @click="editHandler"
-    >
-      Edit
-    </Button>
     <Button class="k-grid-remove-command" @click="removeHandler">
       Remove
     </Button>
   </td>
   <td v-else>
     <Button class="k-grid-save-command" @click="addUpdateHandler">
-      {{ dataItem.index ? "Update" : "Add" }}
+      {{ dataItem.id ? "Update" : "Add" }}
     </Button>
-
     <Button class="k-grid-cancel-command" @click="cancelDiscardHandler">
-      {{ dataItem.index ? "Cancel" : "Discard" }}
+      {{ dataItem.id ? "Cancel" : "Discard" }}
     </Button>
   </td>
 </template>

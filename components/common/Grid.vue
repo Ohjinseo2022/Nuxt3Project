@@ -14,6 +14,7 @@ const props = withDefaults(defineProps<GridProps>(), {
   scrollable: "none",
   noData: "등록된 내역이 없습니다.",
 });
+const emit = defineEmits(['callBack'])
 const dataItem = ref<dataItem[]>([...props.dataItems]);
 watch(props, () => {
   dataItem.value = [...props.dataItems];
@@ -28,32 +29,7 @@ const itemChange = async (e: any) => {
 };
 
 ///?
-const update = async (data: dataItem[], item: any, remove: boolean) => {
-  let updated;
-  let itemID = item.index;
-  let index = data.findIndex(
-    (p) =>
-      JSON.stringify({ ...p }) === JSON.stringify(item) ||
-      (itemID && p.index === itemID)
-  );
-  if (index >= 0) {
-    updated = Object.assign({}, item);
-    data[index] = updated;
-  } else {
-    let id = 1;
-    data.forEach((p) => {
-      id = Math.max(p.index + 1, id);
-    });
-    updated = Object.assign({}, item, { index: id });
-    data.unshift(updated);
-    index = 0;
-  }
 
-  if (remove) {
-    data = data.splice(index, 1);
-  }
-  return data[index];
-};
 const hasItemsInEdit = ref<boolean>(false);
 watch(dataItem, () => {
   hasItemsInEdit.value =
@@ -61,7 +37,7 @@ watch(dataItem, () => {
 });
 
 const cancelChanges = () => {
-  //불필요한 코드같은느낌임
+  //불필요한 코드같은느낌임  -> 아니었음 대박 오진서바보였던거임
   let editedItems = dataItem.value.filter((item) => item.inEdit === true);
   if (editedItems.length) {
     editedItems.forEach((item) => {
@@ -79,15 +55,26 @@ const insert = async () => {
   dataItem.value = newDateItem;
 };
 const edit = (e: any) => {
-  console.log(e);
-  e.dataItem.inEdit = true;
+  console.log(e.dataItem)
+  if(e.event.srcElement.tagName !== 'SPAN'){
+    e.dataItem.inEdit = true;
+  }
 };
 const save = (e: any) => {
+  console.log(e.dataItem.index);
   e.dataItem.inEdit = undefined;
   const data = dataItem.value.slice();
+  data.forEach((item,idx)=>{
+    if(item.index === e.dataItem.index){
+      data[idx] = e.dataItem
+    } 
+  })
+  dataItem.value = data
+  emit('callBack',data,'save')
 };
 const cancel = (e: any) => {
-  if (e.dataItem.ProductID) {
+  if (e.dataItem.id) {
+    dataItem.value = [...props.dataItems].slice();
     e.dataItem.inEdit = undefined;
   } else {
     update(dataItem.value, e.dataItem, true);
@@ -98,6 +85,28 @@ const remove = (e: any) => {
   update(dataItem.value, e.dataItem, true);
   update(props.dataItems, e.dataItem, true);
   dataItem.value = dataItem.value.slice();
+};
+const update = async (data: dataItem[], item: any, remove: boolean) => {
+  let updated;
+  let itemID = item.index;
+  let index = data.findIndex((p) =>JSON.stringify({ ...p }) === JSON.stringify(item) ||(itemID && p.index === itemID));
+  if (index >= 0) {
+    updated = Object.assign({}, item);
+    data[index] = updated;
+  } else {
+    let id = 1;
+    data.forEach((p) => {
+      id = Math.max(p.index + 1, id);
+    });
+    updated = Object.assign({}, item, { index: id });
+    data.unshift(updated);
+    index = 0;
+  }
+
+  if (remove) {
+    data = data.splice(index, 1);
+  }
+  return data[index];
 };
 </script>
 

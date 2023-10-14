@@ -8,7 +8,7 @@ const columns = [{
   {field: 'col4',title:'A4'},
   {field: 'col5',title:'A5'},
   {field: 'col6',title:'A6'},
-  {field: 'col7',title:'A6',cell:'command'},
+  {field: 'col7',title:'A7',cell:'command'},
   ]
 const listData = ref<dataItem[]>([]);
 const onList = async () => {
@@ -34,6 +34,20 @@ const onList = async () => {
 
 };
 const inputValue = ref<string>("");
+const onDataHanddler = (dataitems:dataItem[],trigger:string)=>{
+  if(trigger ==='save'){
+    listData.value = dataitems
+  }
+} 
+const onDelete = (id:string)=>{
+  //삭제 기능 구현하기용! 
+}
+const onUpdate = (id:string)=>{
+//id가 있다면 업데이트
+}
+const onInsert = (dataItem:dataItem)=>{
+//id가 없다면 삭제
+}
 onMounted(async () => {
   await onList();
 });
@@ -41,5 +55,5 @@ onMounted(async () => {
 <template>
   <div>기본 설정 완료</div>
   <CommonInput v-model="inputValue" :placeholder="'공통컴포넌트 테스트 '" />
-  <CommonGrid :dataItems="listData" :columns="columns"/>
+  <CommonGrid :dataItems="listData" :columns="columns" @callBack="onDataHanddler"/>
 </template>
