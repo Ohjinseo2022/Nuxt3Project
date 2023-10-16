@@ -55,7 +55,6 @@ const insert = async () => {
   dataItem.value = newDateItem;
 };
 const edit = (e: any) => {
-  console.log(e.dataItem)
   if(e.event.srcElement.tagName !== 'SPAN'){
     e.dataItem.inEdit = true;
   }
@@ -70,7 +69,7 @@ const save = (e: any) => {
     } 
   })
   dataItem.value = data
-  emit('callBack',data,'save')
+  emit('callBack',data,e.dataItem,'save')
 };
 const cancel = (e: any) => {
   if (e.dataItem.id) {
@@ -147,14 +146,14 @@ const update = async (data: dataItem[], item: any, remove: boolean) => {
       </template>
       <GridToolbar>
         <Button title="Add new" :theme-color="'primary'" @click="insert">
-          Add new
+          추가
         </Button>
         <Button
           v-if="hasItemsInEdit"
           title="Cancel current changes"
           @click="cancelChanges"
         >
-          Cancel current changes
+          변경 내용 전체 취소
         </Button>
       </GridToolbar>
     </Grid>

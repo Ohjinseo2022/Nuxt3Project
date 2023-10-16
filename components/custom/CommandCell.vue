@@ -16,7 +16,9 @@ const removeHandler = () => {
   emit("remove", { dataItem: props.dataItem });
 };
 const addUpdateHandler = () => {
-  emit("save", { dataItem: props.dataItem });
+  if(!props.dataItem.id){
+    emit("save", { dataItem: props.dataItem });
+  }
 };
 const cancelDiscardHandler = () => {
   emit("cancel", { dataItem: props.dataItem });
@@ -26,15 +28,15 @@ const cancelDiscardHandler = () => {
 <template>
   <td v-if="!dataItem['inEdit']" class="k-command-cell">
     <Button class="k-grid-remove-command" @click="removeHandler">
-      Remove
+      삭제
     </Button>
   </td>
   <td v-else>
     <Button class="k-grid-save-command" @click="addUpdateHandler">
-      {{ dataItem.id ? "Update" : "Add" }}
+      {{ dataItem.id ? "수정" : "추가" }}
     </Button>
     <Button class="k-grid-cancel-command" @click="cancelDiscardHandler">
-      {{ dataItem.id ? "Cancel" : "Discard" }}
+      {{ dataItem.id ? "취소" : "삭제" }}
     </Button>
   </td>
 </template>

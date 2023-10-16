@@ -34,9 +34,10 @@ const onList = async () => {
 
 };
 const inputValue = ref<string>("");
-const onDataHanddler = (dataitems:dataItem[],trigger:string)=>{
+const onDataHanddler = async (dataitems:dataItem[],addItem:dataItem,trigger:string)=>{
   if(trigger ==='save'){
     listData.value = dataitems
+    await onInsert(addItem)
   }
 } 
 const onDelete = (id:string)=>{
@@ -45,8 +46,25 @@ const onDelete = (id:string)=>{
 const onUpdate = (id:string)=>{
 //id가 있다면 업데이트
 }
-const onInsert = (dataItem:dataItem)=>{
-//id가 없다면 삭제
+const onInsert = async (dataItem:dataItem)=>{
+//id가 없다면 추가
+const reqBody={
+  id: '',
+  userName:dataItem.userName,
+  itemOneName:dataItem.col1,
+  itemOneSerialInfo:dataItem.col2,
+  itemTwoName:dataItem.col3,
+  itemTwoSerialInfo:dataItem.col4,
+  itemThreeName:dataItem.col5,
+  itemThreeSerialInfo:dataItem.col6,
+}
+  const {data , error } = await useFetchApi('/user-master/create',{
+    method:'POST',
+    body: reqBody
+  })
+  console.log(data.value)
+  await onList();
+
 }
 onMounted(async () => {
   await onList();
