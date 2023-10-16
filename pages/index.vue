@@ -49,7 +49,7 @@ const onUpdate = (id:string)=>{
 const onInsert = async (dataItem:dataItem)=>{
 //id가 없다면 추가
 const reqBody={
-  id: '',
+  id: generateRandomString(10),
   userName:dataItem.userName,
   itemOneName:dataItem.col1,
   itemOneSerialInfo:dataItem.col2,
@@ -58,6 +58,7 @@ const reqBody={
   itemThreeName:dataItem.col5,
   itemThreeSerialInfo:dataItem.col6,
 }
+console.log(reqBody)
   const {data , error } = await useFetchApi('/user-master/create',{
     method:'POST',
     body: reqBody

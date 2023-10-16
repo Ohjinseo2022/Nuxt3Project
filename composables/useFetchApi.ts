@@ -28,13 +28,17 @@ export default async <T>(apiUrl: string, opts: {
     params: {...opts?.params },  //uuid: `uuid_${Math.round(Math.random()*1000000)}`
     // params: opts?.params,
     body: opts?.body,
-    mode: 'no-cors',
+    // mode: 'no-cors',
     redirect: "follow",
     cache: "no-store",
     onRequest({ request, options }) {
-        console.log(`[useApiReq] : 전송`);
-        console.log(request)
       options.headers = {...options.headers, "Access-Control-Allow-Origin": "*"};
+      if(opts.method.toUpperCase()==="POST"){
+        options.headers = {...options.headers, "Content-Type": "application/json"};
+      }
+      console.log(`[useApiReq] : 전송`);
+      console.log(request)
+      console.log(options.headers)
     },
     onRequestError({ request, options, error }) {
       console.log(`[useApiReq] : req 오류 발생`);
