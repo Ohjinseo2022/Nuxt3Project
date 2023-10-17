@@ -52,7 +52,9 @@ export default defineNuxtConfig({
     compressPublicAssets: true,
     routeRules: {
       "/api/**": {
-          proxy: `${VITE_DOMAIN}/api/**`,
+          proxy: {
+            to : `${VITE_DOMAIN}/api/**`
+          }
       },
   },
     // devProxy: {

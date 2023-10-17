@@ -62,6 +62,7 @@ const edit = (e: any) => {
 const save = (e: any) => {
   console.log(e.dataItem.index);
   e.dataItem.inEdit = undefined;
+  
   const data = dataItem.value.slice();
   data.forEach((item,idx)=>{
     if(item.index === e.dataItem.index){
@@ -69,7 +70,12 @@ const save = (e: any) => {
     } 
   })
   dataItem.value = data
-  emit('callBack',data,e.dataItem,'save')
+  if(e.dataItem.id){
+    emit('callBack',data,e.dataItem,'update')  
+  }else{
+    emit('callBack',data,e.dataItem,'save')
+  }
+  
 };
 const cancel = (e: any) => {
   if (e.dataItem.id) {
@@ -81,9 +87,21 @@ const cancel = (e: any) => {
 };
 const remove = (e: any) => {
   e.dataItem.inEdit = undefined;
-  update(dataItem.value, e.dataItem, true);
-  update(props.dataItems, e.dataItem, true);
-  dataItem.value = dataItem.value.slice();
+  // update(dataItem.value, e.dataItem, true);
+  // update(props.dataItems, e.dataItem, true);
+  // dataItem.value = dataItem.value.slice();
+  e.dataItem.inEdit = undefined;
+  const data = dataItem.value.slice();
+  data.forEach((item,idx)=>{
+    if(item.index === e.dataItem.index){
+      data[idx] = e.dataItem
+    } 
+  })
+  dataItem.value = data
+  if(e.dataItem.id){
+    emit('callBack',data,e.dataItem,'delete')  
+  }
+ 
 };
 const update = async (data: dataItem[], item: any, remove: boolean) => {
   let updated;

@@ -43,6 +43,7 @@ export default async <T>(apiUrl: string, opts: {
     onRequestError({ request, options, error }) {
       console.log(`[useApiReq] : req 오류 발생`);
       console.log(error);
+      console.log(request);
     },
     onResponse({ request, response, options }) {
     //   useOption.offLoading();

@@ -16,9 +16,7 @@ const removeHandler = () => {
   emit("remove", { dataItem: props.dataItem });
 };
 const addUpdateHandler = () => {
-  if(!props.dataItem.id){
     emit("save", { dataItem: props.dataItem });
-  }
 };
 const cancelDiscardHandler = () => {
   emit("cancel", { dataItem: props.dataItem });
