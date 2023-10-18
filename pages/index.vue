@@ -104,7 +104,7 @@ onMounted(async () => {
 </script>
 <template>
   <div>기본 설정 완료</div>
-  <CommonInput v-model="inputValue" :placeholder="'공통컴포넌트 테스트 '" />
+  <!-- <CommonInput v-model="inputValue" :placeholder="'공통컴포넌트 테스트 '" /> -->
   <CommonGrid
     :dataItems="listData"
     :columns="columns"
