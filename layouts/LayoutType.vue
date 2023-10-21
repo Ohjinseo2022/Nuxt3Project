@@ -11,7 +11,6 @@
       </div>
     </div>
   </div>
-
   <slot name="footer">
     <LayoutType1Footer />
   </slot>
