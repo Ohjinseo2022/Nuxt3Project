@@ -47,6 +47,7 @@ export default defineNuxtConfig({
     "@invictus.codes/nuxt-vuetify",
     // "nuxt-gtag",
     // '@nuxt/image',
+    // "vue3-simple-html2pdf"
   ],
   nitro: {
     compressPublicAssets: true,

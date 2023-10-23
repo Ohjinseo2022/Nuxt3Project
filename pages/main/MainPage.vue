@@ -38,6 +38,37 @@ const onList = async () => {
     });
   }
 };
+// const vue3SimpleHtml2pdf = ref<any>()
+// const  pdfOptions = {
+//   margin: 15,
+//   image: {
+//     type: 'jpeg',
+//     quality: 1,
+//   },
+//   html2canvas: { scale: 3 },
+//   jsPDF: {
+//     unit: 'mm',
+//     format: 'a4',
+//     orientation: 'p',
+//   },
+// }
+const exportPdf = ref<any>()
+const dddd = (htmlDocument: string) => {
+  let initBody =  document.body.innerHTML;
+  document.body.innerHTML = exportPdf.value.innerHTML
+  window.print();
+  // let initBody:any;
+  // window.onbeforeprint=()=>{
+  //   initBody = document.body.innerHTML;
+  // document.body.innerHTML = document.getElementById('exportPdf').innerHTML;
+  // }
+  // window.onafterprint = ()=>{
+  //   document.body.innerHTML = initBody;
+  // }
+  // window.print();
+  // return false;
+};
+
 const inputValue = ref<string>("");
 const onDataHanddler = async (
   dataitems: dataItem[],
@@ -110,10 +141,17 @@ onMounted(async () => {
 });
 </script>
 <template>
+  <!-- <Vue3SimpleHtml2pdf ref="vue3SimpleHtml2pdf" :options="pdfOptions" :filename="'파일 다운로드 테스트'"> -->
   <!-- <CommonInput v-model="inputValue" :placeholder="'공통컴포넌트 테스트 '" /> -->
+  <div ref="exportPdf" id="exportPdf">
   <CommonGrid
     :dataItems="listData"
     :columns="columns"
     @callBack="onDataHanddler"
   />
+</div>
+   <span> dsadsadd 왜적용안댐 >?</span>
+
+  <!-- </Vue3SimpleHtml2pdf> -->
+  <Button @click="dddd">눌러 보쇼</Button>
 </template>

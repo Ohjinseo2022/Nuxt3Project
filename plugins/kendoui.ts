@@ -7,7 +7,6 @@ import {
   loadMessages,
   LocalizationProvider,
 } from "@progress/kendo-vue-intl";
-
 import moment from "moment";
 
 export default defineNuxtPlugin((nuxtApp) => {
