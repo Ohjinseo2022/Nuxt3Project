@@ -54,18 +54,17 @@ const onList = async () => {
 // }
 const exportPdf = ref<any>();
 const dddd = (htmlDocument: string) => {
-  console.log('클릭')
+  console.log("클릭");
   let initBody = document.body.innerHTML;
 
   window.onbeforeprint = () => {
     initBody = document.body.innerHTML;
     document.body.innerHTML = exportPdf.value.innerHTML;
-    
   };
   window.onafterprint = () => {
-      document.body.innerHTML = initBody;
-    };
-    window.print();
+    document.body.innerHTML = initBody;
+  };
+  window.print();
 };
 const inputValue = ref<string>("");
 const onDataHanddler = async (
@@ -147,29 +146,7 @@ onMounted(async () => {
       :columns="columns"
       @callBack="onDataHanddler"
     />
-    <CommonGrid
-      :dataItems="listData"
-      :columns="columns"
-      @callBack="onDataHanddler"
-    />
-    <CommonGrid
-      :dataItems="listData"
-      :columns="columns"
-      @callBack="onDataHanddler"
-    />
-    <CommonGrid
-      :dataItems="listData"
-      :columns="columns"
-      @callBack="onDataHanddler"
-    />
   </div>
-  <CommonGrid
-    :dataItems="listData"
-    :columns="columns"
-    @callBack="onDataHanddler"
-  />
-  <span> dsadsadd 왜적용안댐 >?</span>
-
   <!-- </Vue3SimpleHtml2pdf> -->
-  <Button @click="dddd">눌러 보쇼</Button>
+  <!-- <Button @click="dddd">눌러 보쇼</Button> -->
 </template>

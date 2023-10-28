@@ -10,8 +10,8 @@ export const extractQuotes = (str: string): string => {
   if (match && match[1]) {
     return match[1];
   }
-  return ""
-}
+  return "";
+};
 
 /**
  *str 한글제외 삭제
@@ -20,45 +20,45 @@ export const extractQuotes = (str: string): string => {
  */
 export const removeNonKorean = (str: string): string => {
   return str.replace(/[^가-힣 ㄱ-ㅎ ㅏ-ㅣ]/gi, "");
-}
+};
 
 /**
  *str 한글여부
  * @param str
  * @returns {boolean 한글여부}
  */
- export const isKorean = (str: string): boolean => {
+export const isKorean = (str: string): boolean => {
   const regexp = /[가-힣 ㄱ-ㅎ ㅏ-ㅣ]/g;
   return regexp.test(str);
-}
+};
 
 /**
  *str 한글 삭제
  * @param str
  * @returns {str 한글 삭제}
  */
- export const removeKorean = (str: string): string => {
+export const removeKorean = (str: string): string => {
   return str.replace(/[가-힣 ㄱ-ㅎ ㅏ-ㅣ]/gi, "");
-}
+};
 
 /**
  *str 대문자 여부
  * @param str
  * @returns {boolean 대문자여부}
  */
- export const isCapitalLetter = (str: string): boolean => {
+export const isCapitalLetter = (str: string): boolean => {
   const regexp = /[A-Z]/g;
   return regexp.test(str);
-}
+};
 
 /**
  *str 대문자 삭제
  * @param str
  * @returns {str 대문자 삭제}
  */
- export const removeCapitalLetter = (str: string): string => {
+export const removeCapitalLetter = (str: string): string => {
   return str.replace(/[A-Z]/g, "");
-}
+};
 
 /**
  * 전화번호 정규식
@@ -68,7 +68,7 @@ export const removeNonKorean = (str: string): string => {
 export const isPhoneNumber = (phone: string): boolean => {
   const regexp = /^\d{3}-\d{3,4}-\d{4}$/;
   return regexp.test(phone);
-}
+};
 
 /**
  * 이메일 정규식
@@ -78,7 +78,7 @@ export const isPhoneNumber = (phone: string): boolean => {
 export const isEmail = (email: string): boolean => {
   const regexp = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   return regexp.test(email);
-}
+};
 
 /**
  * 비밀번호 정규식1
@@ -89,8 +89,7 @@ export const isPassword = (password: string): boolean => {
   // const regexp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
   const regexp = /^(?=.*[a-zA-Z])(?=.*\d)(?=.*[\W_]).{8,20}$/;
   return regexp.test(password);
-}
-
+};
 
 /**
  * 비밀번호 정규식2
@@ -98,7 +97,8 @@ export const isPassword = (password: string): boolean => {
  * @returns {boolean 연속된 순서를 가진 문자,숫자 체크 비밀번호 정규식}
  */
 export const isConsecutive = (password: string): boolean => {
-  const regexp = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+  const regexp =
+    "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
 
   let count = 0;
   let index = -1;
@@ -117,7 +117,7 @@ export const isConsecutive = (password: string): boolean => {
     index = idx;
   }
   return true;
-}
+};
 
 /**
  * 비밀번호 정규식3
@@ -126,16 +126,16 @@ export const isConsecutive = (password: string): boolean => {
  */
 export const isConsecutiveKey = (password: string): boolean => {
   const keyboard = ["1234567890", "qwertyuiop", "asdfghjkl", "zxcvbnm"];
-  for (let i = 0; i < password.length-2; i++) {
-      const sliceValue = password.substring(i, i + 3);
-      // 모든 조건을 한번씩 순회
-      if (keyboard.some((code) => code.includes(sliceValue))) {
-          return false;
-      }
+  for (let i = 0; i < password.length - 2; i++) {
+    const sliceValue = password.substring(i, i + 3);
+    // 모든 조건을 한번씩 순회
+    if (keyboard.some((code) => code.includes(sliceValue))) {
+      return false;
+    }
   }
   // 모든 조건을 넘겼을 때
   return true;
-}
+};
 
 /**
  * 이미지 파일
@@ -145,20 +145,20 @@ export const isConsecutiveKey = (password: string): boolean => {
 export const isImageFile = (imageExt: string): boolean => {
   const regexp = /\.(jpg|jpeg|png|gif)$/i;
   return regexp.test(imageExt);
-}
+};
 
 /**
  * 가격 정규식
  * @param price
  * @returns {number 형태의 가격 정보 1000단위로 "," 추가한 string 변환 정규식}
  */
-export const isPriceComma = (price:number):string =>{
-  if(isNaN(Number(price))){
+export const isPriceComma = (price: number): string => {
+  if (isNaN(Number(price))) {
     return price.toString();
   }
   return price.toLocaleString();
   // return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-}
+};
 
 /**
  * 사업자등록번호 정규식
@@ -168,7 +168,7 @@ export const isPriceComma = (price:number):string =>{
 export const isBusinessRegNum = (businessRegNum: string): boolean => {
   const regexp = /^\d{10}$/;
   return regexp.test(businessRegNum);
-}
+};
 
 /**
  * 법입등록번호  정규식
@@ -178,25 +178,25 @@ export const isBusinessRegNum = (businessRegNum: string): boolean => {
 export const isLegalRegNum = (legalRegNum: string): boolean => {
   const regexp = /^\d{13}$/;
   return regexp.test(legalRegNum);
-}
+};
 
 /**
  *str 숫자 제외 삭제
  * @param str
  * @returns {str 숫자 제외 삭제}
  */
- export const removeNonNumber = (str: string): string => {
-  return str.replace(/[^0-9]/gi, "")
-}
+export const removeNonNumber = (str: string): string => {
+  return str.replace(/[^0-9]/gi, "");
+};
 
 /**
  *str 문자 제외 삭제
  * @param str
  * @returns {str 문자 제외 삭제}
  */
- export const removeNonString = (str: string): string => {
-  return str.replace(/[0-9]/g, '');
-}
+export const removeNonString = (str: string): string => {
+  return str.replace(/[0-9]/g, "");
+};
 
 /**
  * 특수문자체크 정규식
@@ -206,7 +206,7 @@ export const isLegalRegNum = (legalRegNum: string): boolean => {
 export const isSpecialCharacters = (specialCharacters: string): boolean => {
   const regexp = /[^a-zA-Z0-9ㄱ-힣]/g;
   return regexp.test(specialCharacters);
-}
+};
 
 /**
  * 영문, 한글 제외 삭제
@@ -216,7 +216,7 @@ export const isSpecialCharacters = (specialCharacters: string): boolean => {
 export const removeNonEnKr = (str: string): string => {
   const regex = /[^a-zA-Zㄱ-힣]/g;
   return str.replace(regex, "");
-}
+};
 
 /**
  * 영문, 한글, 숫자 제외 삭제
@@ -226,7 +226,7 @@ export const removeNonEnKr = (str: string): string => {
 export const removeNonEnKrNum = (str: string): string => {
   const regex = /[^a-zA-Z0-9ㄱ-힣]/g;
   return str.replace(regex, "");
-}
+};
 
 /**
  * ID 영문,숫자-,_ 제외 삭제
@@ -236,8 +236,7 @@ export const removeNonEnKrNum = (str: string): string => {
 export const removeIDNonEnNum = (str: string): string => {
   const regex = /[^a-zA-Z0-9-_]/g;
   return str.replace(regex, "");
-}
-
+};
 
 export const getBase64Str = () => {
   const htmlString = `
@@ -246,7 +245,8 @@ export const getBase64Str = () => {
   <img src="https://example.com/image.jpg" alt="External Image">
   `;
 
-  const regex = /<img[^>]+src\s*=\s*['"]data:image\/[^;]+;base64,([^'"]+)['"][^>]*>/g;
+  const regex =
+    /<img[^>]+src\s*=\s*['"]data:image\/[^;]+;base64,([^'"]+)['"][^>]*>/g;
 
   const matches = [];
   let match;
@@ -255,16 +255,16 @@ export const getBase64Str = () => {
   }
 
   console.log(matches);
-
-}
+};
 
 export const removeHtmlTag = (htmlString: string) => {
-  return htmlString.replace(/<[^>]*>/g, '')
-}
+  return htmlString.replace(/<[^>]*>/g, "");
+};
 
-export const generateRandomString = (length:number)=> {
-  const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-  let result = '';
+export const generateRandomString = (length: number) => {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
 
   for (let i = 0; i < length; i++) {
     const randomIndex = Math.floor(Math.random() * characters.length);
@@ -272,4 +272,35 @@ export const generateRandomString = (length:number)=> {
   }
 
   return result;
-}
+};
+
+/**
+ * @param wallpaper
+ * @returns {반환되는 리턴값 정보를 한줄로 얘기해줌}
+ */
+export const solution = (wallpaper: string[]): number[] => {
+  var answer: number[] = [];
+  const lowArr: number[] = [];
+  const colArr: number[] = [];
+  wallpaper.forEach((item, i) => {
+    item.split("").forEach((col, j) => {
+      if (col === "#") {
+        lowArr.push(i);
+        colArr.push(j);
+      }
+    });
+  });
+  lowArr.sort((a, b) => a - b);
+  colArr.sort((a, b) => a - b);
+  if (lowArr.length > 0 && colArr.length > 0) {
+    // answer = [lowArr[0], colArr[0], lowArr.at(-1) + 1, colArr.at(-1) + 1];
+    answer = [
+      lowArr[0],
+      colArr[0],
+      lowArr[lowArr.length - 1] + 1,
+      colArr[colArr.length - 1] + 1,
+    ];
+  }
+
+  return answer;
+};
