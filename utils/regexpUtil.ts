@@ -303,3 +303,55 @@ export const solution = (wallpaper: string[]): number[] => {
   }
   return answer;
 };
+
+//프로그래머스 카드뭉치
+//잘못된 풀이인가봐...
+export const solution1 = (
+  cards1: string[],
+  cards2: string[],
+  goal: string[]
+) => {
+  var answer = "Yes";
+  let index = 0;
+  let isfirst = true;
+  let cnt = 0;
+  while (index < goal.length) {
+    if (isfirst) {
+      //현재 있는 카드뭉치 맨위 카드의 단어와 현재 단어가 동일하다면
+      if (cards1[0] === goal[index]) {
+        cnt += 1;
+        index += 1;
+        cards1.shift();
+      } else {
+        //1개라도 사용하지 않았다면 루프를꺠고 no출력
+        if (cnt === 0) {
+          answer = "No";
+          break;
+        } else {
+          //1개라도 카드뭉치를 사용했다면 2번째 카드뭉치를 확인하러 출발
+          isfirst = !isfirst;
+          //카드 사용횟수 초기화
+          cnt = 0;
+          continue;
+        }
+      }
+    } else {
+      if (cards2[0] === goal[index]) {
+        cnt += 1;
+        index += 1;
+        cards2.shift();
+      } else {
+        //1개라도 사용하지 못했다면 루프를 깨고 No출력
+        if (cnt === 0) {
+          answer = "No";
+          break;
+        } else {
+          isfirst = !isfirst;
+          cnt = 0;
+          continue;
+        }
+      }
+    }
+  }
+  return answer;
+};
