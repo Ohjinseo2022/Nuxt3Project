@@ -279,7 +279,7 @@ export const generateRandomString = (length: number) => {
  * @returns {반환되는 리턴값 정보를 한줄로 얘기해줌}
  */
 export const solution = (wallpaper: string[]): number[] => {
-  var answer: number[] = [];
+  let answer: number[] = [];
   const lowArr: number[] = [];
   const colArr: number[] = [];
   wallpaper.forEach((item, i) => {
@@ -301,6 +301,5 @@ export const solution = (wallpaper: string[]): number[] => {
       colArr[colArr.length - 1] + 1,
     ];
   }
-
   return answer;
 };
